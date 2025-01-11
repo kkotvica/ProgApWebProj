@@ -10,4 +10,6 @@ urlpatterns = [
     path('pracownicy/<int:pk>/', views.PracownikDetail.as_view(), name='pracownik-detail'),
     path('rezerwacje/', views.RezerwacjaList.as_view(), name='rezerwacja-list'),
     path('rezerwacje/<int:pk>/', views.RezerwacjaDetail.as_view(), name='rezerwacja-detail'),
+    path('rezerwacje/klient/<int:klient_id>/', views.RezerwacjeKlienta.as_view(), name='rezerwacje-klienta'),
+    path('uslugi/cena/<int:min_cena>/<int:max_cena>/', views.UslugiWPrzedzialeCenowym.as_view(), name='uslugi-przedzial-cenowy'),
 ]

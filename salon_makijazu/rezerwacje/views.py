@@ -1,6 +1,8 @@
 from rest_framework import generics
 from .models import Klient, Usługa, Pracownik, Rezerwacja
 from .serializers import KlientSerializer, UsługaSerializer, PracownikSerializer, RezerwacjaSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 class KlientList(generics.ListCreateAPIView):
     queryset = Klient.objects.all()
@@ -33,3 +35,15 @@ class RezerwacjaList(generics.ListCreateAPIView):
 class RezerwacjaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Rezerwacja.objects.all()
     serializer_class = RezerwacjaSerializer
+
+class RezerwacjeKlienta(APIView):
+    def get(self, request, klient_id):
+        rezerwacje = Rezerwacja.objects.filter(klient__id=klient_id)
+        serializer = RezerwacjaSerializer(rezerwacje, many=True)
+        return Response(serializer.data)
+
+class UslugiWPrzedzialeCenowym(APIView):
+    def get(self, request, min_cena, max_cena):
+        uslugi = Usługa.objects.filter(cena__gte=min_cena, cena__lte=max_cena)
+        serializer = UsługaSerializer(uslugi, many=True)
+        return Response(serializer.data)
