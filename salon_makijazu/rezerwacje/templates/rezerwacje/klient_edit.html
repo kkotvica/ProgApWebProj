@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja klienta</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Edycja klienta</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="edit">Zapisz zmiany</button>
+    </form>
+
+    <h2>Usuń klienta</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="delete" style="background-color: red; color: white;">Usuń klienta</button>
+    </form>
+
+    <a href="/klienci/{{ klient.id }}/">
+        <button>Powrót do szczegółów</button>
+    </a>
+</body>
+</html>

@@ -11,6 +11,12 @@
     <p>Nazwisko: {{ klient.nazwisko }}</p>
     <p>Email: {{ klient.email }}</p>
     <p>Telefon: {{ klient.telefon }}</p>
-    <a href="/klienci/">Powrót do listy klientów</a>
+
+    <a href="/klienci/{{ klient.id }}/edit/">
+        <button>Edytuj klienta</button>
+    </a>
+    <a href="/klienci/">
+        <button>Powrót do listy klientów</button>
+    </a>
 </body>
 </html>

@@ -10,10 +10,10 @@
     <ul>
         {% for pracownik in pracownicy %}
             <li>
-                {{ pracownik.imie }} {{ pracownik.nazwisko }} - {{ pracownik.specjalizacja }}
+                <a href="{{ pracownik.id }}/">{{ pracownik.imie }} {{ pracownik.nazwisko }} - {{ pracownik.specjalizacja }}</a>
             </li>
         {% endfor %}
     </ul>
-    <a href="/">Powrót do strony głównej</a>
+    <a href="add/"><button>Dodaj pracownika</button></a>
 </body>
 </html>

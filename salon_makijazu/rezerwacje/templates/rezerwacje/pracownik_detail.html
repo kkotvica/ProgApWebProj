@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły pracownika</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Szczegóły pracownika</h1>
+    <p>Imię: {{ pracownik.imie }}</p>
+    <p>Nazwisko: {{ pracownik.nazwisko }}</p>
+    <p>Specjalizacja: {{ pracownik.specjalizacja }}</p>
+    <a href="edit/"><button>Edytuj</button></a>
+    <a href="/pracownicy/"><button>Powrót do listy</button></a>
+</body>
+</html>

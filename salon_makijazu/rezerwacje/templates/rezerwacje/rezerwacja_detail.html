@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły rezerwacji</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Szczegóły rezerwacji</h1>
+    <p>Klient: {{ rezerwacja.klient.imie }} {{ rezerwacja.klient.nazwisko }}</p>
+    <p>Usługa: {{ rezerwacja.usługa.nazwa }}</p>
+    <p>Data: {{ rezerwacja.data }}</p>
+    <a href="edit/"><button>Edytuj</button></a>
+    <a href="/rezerwacje/"><button>Powrót do listy</button></a>
+</body>
+</html>

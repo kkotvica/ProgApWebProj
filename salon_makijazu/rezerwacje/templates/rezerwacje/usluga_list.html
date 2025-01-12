@@ -10,10 +10,10 @@
     <ul>
         {% for usluga in uslugi %}
             <li>
-                <a href="/uslugi/{{ usluga.id }}/">{{ usluga.nazwa }}</a> - {{ usluga.cena }} zł
+                <a href="{{ usluga.id }}/">{{ usluga.nazwa }}</a>
             </li>
         {% endfor %}
     </ul>
-    <a href="/">Powrót do strony głównej</a>
+    <a href="add/"><button>Dodaj usługę</button></a>
 </body>
 </html>

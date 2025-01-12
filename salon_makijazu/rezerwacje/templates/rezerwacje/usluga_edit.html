@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja usługi</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Edycja usługi</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="edit">Zapisz zmiany</button>
+    </form>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="delete" style="background-color: red; color: white;">Usuń usługę</button>
+    </form>
+    <a href="/uslugi/"><button>Powrót</button></a>
+</body>
+</html>
