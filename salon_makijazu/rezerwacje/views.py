@@ -1,8 +1,36 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Klient, Usługa, Pracownik, Rezerwacja
 from .forms import KlientForm, UsługaForm, RezerwacjaForm, PracownikForm
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth import logout
 
-# === Widoki Klienta ===
+
+
+#autoryzacja
+def is_kierownik(user):
+    return user.groups.filter(name='Kierownicy').exists()
+
+def is_pracownik(user):
+    return user.groups.filter(name='Pracownicy').exists()
+
+def custom_logout(request):
+    logout(request)
+    return redirect('login')
+
+
+
+#strona główna
+def dashboard(request):
+    if request.user.groups.filter(name='Kierownicy').exists():
+        return render(request, 'rezerwacje/dashboard_kierownik.html')
+    elif request.user.groups.filter(name='Pracownicy').exists():
+        return render(request, 'rezerwacje/dashboard_pracownik.html')
+    else:
+        return render(request, 'rezerwacje/dashboard_default.html')
+
+# klient
+@login_required
+@user_passes_test(is_pracownik)
 def klient_list(request):
     klienci = Klient.objects.all()
     return render(request, 'rezerwacje/klient_list.html', {'klienci': klienci})
@@ -37,7 +65,9 @@ def klient_add(request):
     return render(request, 'rezerwacje/klient_add.html', {'form': form})
 
 
-# === Widoki Usługi ===
+# usługi
+@login_required
+@user_passes_test(is_kierownik)
 def usluga_list(request):
     uslugi = Usługa.objects.all()
     return render(request, 'rezerwacje/usluga_list.html', {'uslugi': uslugi})
@@ -72,7 +102,9 @@ def usluga_add(request):
     return render(request, 'rezerwacje/usluga_add.html', {'form': form})
 
 
-# === Widoki Pracownika ===
+# pracownik
+@login_required
+@user_passes_test(is_kierownik)
 def pracownik_list(request):
     pracownicy = Pracownik.objects.all()
     return render(request, 'rezerwacje/pracownik_list.html', {'pracownicy': pracownicy})
@@ -107,7 +139,9 @@ def pracownik_add(request):
     return render(request, 'rezerwacje/pracownik_add.html', {'form': form})
 
 
-# === Widoki Rezerwacji ===
+# rezerwacje
+@login_required
+@user_passes_test(is_pracownik)
 def rezerwacja_list(request):
     rezerwacje = Rezerwacja.objects.all()
     return render(request, 'rezerwacje/rezerwacja_list.html', {'rezerwacje': rezerwacje})

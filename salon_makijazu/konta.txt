@@ -1,0 +1,5 @@
+login: pracownik1
+hasło: 1qaz@WSXhaslo
+
+login: kierownik1
+haslo: 1qaz@WSXhaslo

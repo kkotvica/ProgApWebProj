@@ -3,7 +3,7 @@ from .views import (
     klient_list, klient_detail, klient_edit, klient_add,
     usluga_list, usluga_detail, usluga_edit, usluga_add,
     pracownik_list, pracownik_detail, pracownik_edit, pracownik_add,
-    rezerwacja_list, rezerwacja_detail, rezerwacja_edit, rezerwacja_add
+    rezerwacja_list, rezerwacja_detail, rezerwacja_edit, rezerwacja_add,dashboard
 )
 
 urlpatterns = [
@@ -30,4 +30,6 @@ urlpatterns = [
     path('rezerwacje/add/', rezerwacja_add, name='rezerwacja-add-html'),
     path('rezerwacje/<int:pk>/', rezerwacja_detail, name='rezerwacja-detail-html'),
     path('rezerwacje/<int:pk>/edit/', rezerwacja_edit, name='rezerwacja-edit-html'),
+
+    path('dashboard/', dashboard, name='dashboard'),
 ]
