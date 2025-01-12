@@ -1,49 +1,28 @@
-from rest_framework import generics
+
 from .models import Klient, Usługa, Pracownik, Rezerwacja
-from .serializers import KlientSerializer, UsługaSerializer, PracownikSerializer, RezerwacjaSerializer
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from django.shortcuts import render,get_object_or_404, redirect
 
-class KlientList(generics.ListCreateAPIView):
-    queryset = Klient.objects.all()
-    serializer_class = KlientSerializer
 
-class KlientDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Klient.objects.all()
-    serializer_class = KlientSerializer
+def klient_list(request):
+    klienci = Klient.objects.all()
+    return render(request, 'rezerwacje/klient_list.html', {'klienci': klienci})
 
-class UsługaList(generics.ListCreateAPIView):
-    queryset = Usługa.objects.all()
-    serializer_class = UsługaSerializer
+def klient_detail(request, pk):
+    klient = get_object_or_404(Klient, pk=pk)
+    return render(request, 'rezerwacje/klient_detail.html', {'klient': klient})
 
-class UsługaDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Usługa.objects.all()
-    serializer_class = UsługaSerializer
+def usluga_list(request):
+    uslugi = Usługa.objects.all()
+    return render(request, 'rezerwacje/usluga_list.html', {'uslugi': uslugi})
 
-class PracownikList(generics.ListCreateAPIView):
-    queryset = Pracownik.objects.all()
-    serializer_class = PracownikSerializer
+def usluga_detail(request, pk):
+    usluga = get_object_or_404(Usługa, pk=pk)
+    return render(request, 'rezerwacje/usluga_detail.html', {'usluga': usluga})
 
-class PracownikDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Pracownik.objects.all()
-    serializer_class = PracownikSerializer
+def pracownik_list(request):
+    pracownicy = Pracownik.objects.all()
+    return render(request, 'rezerwacje/pracownik_list.html', {'pracownicy': pracownicy})
 
-class RezerwacjaList(generics.ListCreateAPIView):
-    queryset = Rezerwacja.objects.all()
-    serializer_class = RezerwacjaSerializer
-
-class RezerwacjaDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Rezerwacja.objects.all()
-    serializer_class = RezerwacjaSerializer
-
-class RezerwacjeKlienta(APIView):
-    def get(self, request, klient_id):
-        rezerwacje = Rezerwacja.objects.filter(klient__id=klient_id)
-        serializer = RezerwacjaSerializer(rezerwacje, many=True)
-        return Response(serializer.data)
-
-class UslugiWPrzedzialeCenowym(APIView):
-    def get(self, request, min_cena, max_cena):
-        uslugi = Usługa.objects.filter(cena__gte=min_cena, cena__lte=max_cena)
-        serializer = UsługaSerializer(uslugi, many=True)
-        return Response(serializer.data)
+def rezerwacja_list(request):
+    rezerwacje = Rezerwacja.objects.all()
+    return render(request, 'rezerwacje/rezerwacja_list.html', {'rezerwacje': rezerwacje})

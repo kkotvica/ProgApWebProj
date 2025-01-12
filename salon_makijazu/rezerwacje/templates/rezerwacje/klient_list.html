@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista klientów</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Lista klientów</h1>
+    <ul>
+        {% for klient in klienci %}
+            <li>
+                <a href="/klienci/{{ klient.id }}/">{{ klient.imie }} {{ klient.nazwisko }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Powrót do strony głównej</a>
+</body>
+</html>

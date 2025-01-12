@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista rezerwacji</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Lista rezerwacji</h1>
+    <ul>
+        {% for rezerwacja in rezerwacje %}
+            <li>
+                Klient: {{ rezerwacja.klient.imie }} {{ rezerwacja.klient.nazwisko }} - Usługa: {{ rezerwacja.usługa.nazwa }} - Data: {{ rezerwacja.data }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Powrót do strony głównej</a>
+</body>
+</html>

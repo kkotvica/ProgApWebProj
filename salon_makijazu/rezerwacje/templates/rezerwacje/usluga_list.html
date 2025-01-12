@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista usług</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Lista usług</h1>
+    <ul>
+        {% for usluga in uslugi %}
+            <li>
+                <a href="/uslugi/{{ usluga.id }}/">{{ usluga.nazwa }}</a> - {{ usluga.cena }} zł
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Powrót do strony głównej</a>
+</body>
+</html>
